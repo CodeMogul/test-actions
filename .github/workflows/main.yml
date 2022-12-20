@@ -1,0 +1,17 @@
+name: Call the Tesmon workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-workflow-passing-data:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: CodeMogul/test-actions/.github/workflows/tesmon.yml@main
+    with:
+      config-path: .github/labeler.yml
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
