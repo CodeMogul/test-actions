@@ -9,6 +9,8 @@ on:
     secrets:
       TESMON_API_TOKEN:
         required: true
+      TESMON_TRE_ID:
+        required: true
 
 jobs:
   tesmon_test:
@@ -25,7 +27,7 @@ jobs:
       run: npm install @tesmon/cli 
     - name: Run test
       secrets:
-        secrets: ${{ secrets.TESMON_API_TOKEN }}
+        TESMON_API_TOKEN: ${{ secrets.TESMON_API_TOKEN }}
         TESMON_TRE_ID: ${{ secrets.TESMON_TRE_ID }}
       run: tesmon test
     # - uses: actions/labeler@v4
