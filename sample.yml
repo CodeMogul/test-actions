@@ -1,0 +1,77 @@
+# taskActions:
+#   - id: loginUser
+#     type: httpClient
+#     value:
+#       method: POST
+#       baseUrl: http://localhost:5000
+#       path: '/user'
+#       headers:
+#         'Content-Type': 'application/x-www-form-urlencoded'
+#       body: >-
+#         username=user1&password=pass1
+
+# scripts:
+#   - id: validateHttpOk
+#     value: |-
+#       def validateHttpOk(context):
+#         output = context["last_output"]
+#         assert output["statusCode"] == 200
+
+# # beforeAll / afterAll
+# tests:
+#   - id: helloworld
+#     tasks:
+#       - id: login
+#         type: httpClient
+#         action: taskActions.loginUser
+#         validate: scripts.validateHttpOk
+
+# resources:
+#   - id: postgresDb
+#     type: jdbc
+#     value:
+#       username: ${{env.postgres}}
+#       password: ${{env.magical_password}}
+#       connectionString: 'jdbc:postgresql://localhost/db'
+
+# # collections:
+# #   - id: smokeTests
+# #     tests:
+# #       - loginTest
+# #       - restaurantOrderTest
+# #     beforeAll:
+# #       - register
+# #     afterAll:
+# #       - deleteAccount
+
+# runConfigs:
+#   - id: staging
+#     value:
+#       appPrivateIp: 172.31.90.243
+#       appHost: 100.24.20.89
+#   - id: local
+#     value:
+#       appPrivateIp: localhost
+#       appHost: localhost
+
+
+tests:
+  - id: sampleTest
+    tasks:
+      - id: sampleTask
+        action: taskActions.sampleHttpGetRequest
+        validate: scripts.validateHttpOk
+
+taskActions:
+  - id: sampleHttpGetRequest
+    type: httpClient
+    value:
+      method: GET
+      fullUrl: https://httpbin.org/get
+
+scripts:
+  - id: validateHttpOk
+    value: |-
+      def validateHttpOk(context):
+        output = context["last_output"]
+        assert output["statusCode"] == 200

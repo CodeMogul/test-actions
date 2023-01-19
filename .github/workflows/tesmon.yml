@@ -22,9 +22,12 @@ jobs:
       with:
         node-version: 16.13.x
     - name: Install CLI
-      run: npm install -g @tesmon/cli
-    - name: Check version
-      run: tesmon -v
+      run: npm install @tesmon/cli 
+    - name: Run test
+      env:
+        TESMON_API_TOKEN: ${{ secrets.TESMON_API_TOKEN }}
+        TESMON_TRE_ID: ${{ secrets.TESMON_TRE_ID }}
+      run: tesmon test
     # - uses: actions/labeler@v4
     #   with:
     #     repo-token: ${{ secrets.token }}
