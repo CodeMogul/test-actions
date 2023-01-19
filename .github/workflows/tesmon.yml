@@ -24,7 +24,7 @@ jobs:
     - name: Install CLI
       run: npm install @tesmon/cli 
     - name: Run test
-      env:
+      secrets:
         TESMON_API_TOKEN: ${{ secrets.TESMON_API_TOKEN }}
         TESMON_TRE_ID: ${{ secrets.TESMON_TRE_ID }}
       run: tesmon test

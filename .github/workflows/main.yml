@@ -13,6 +13,6 @@ jobs:
     uses: CodeMogul/test-actions/.github/workflows/tesmon.yml@main
     with:
       config-path: .github/labeler.yml
-    secrets:
+    env:
       TESMON_API_TOKEN: ${{ secrets.TESMON_API_TOKEN }}
       TESMON_TRE_ID: ${{ secrets.TESMON_TRE_ID }}
