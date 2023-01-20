@@ -19,10 +19,11 @@ jobs:
         uses: actions/setup-node@v3
         # with:
         #   node-version: 16.13.x
-      - run: npm install @tesmon/cli
+      - run: npm install -g @tesmon/cli
         shell: bash
       - run: tesmon test
         shell: bash
         env:
           TESMON_API_TOKEN: ${{ secrets.TESMON_API_TOKEN }}
-          TESMON_TRE_ID: ${{ secrets.TESMON_TRE_ID }}
+          TESMON_ENVIRONMENT_ID: ${{ secrets.TESMON_ENVIRONMENT_ID }}
+          TESMON_ENV: staging
